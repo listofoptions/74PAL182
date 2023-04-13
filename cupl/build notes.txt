@@ -1,0 +1,6 @@
+run cupl with the following options:
+    cupl.exe -jxfu <path-to-cupl.dl-file> <path-to-74PAL182.PLD-file>
+
+wincupl is available from atmel (now microchip) for free, advised to use the command line version, wincupl gui is **__TRASH__**
+
+documentation is included with wincupl for atmel, its sufficent with output that a total idiot like me managed to use it.

@@ -1,0 +1,46 @@
+Name     74pal182 ;
+PartNo   00 ;
+Date     4/12/2023 ;
+Revision 01 ;
+Designer James M. ;
+Company  Rainy Day Plans ;
+Assembly None ;
+Location  ;
+Device   g16v8a ;
+
+
+PROPERTY ATMEL { xor_synthesis on } ;
+PROPERTY ATMEL { logic_doubling on } ;
+PROPERTY ATMEL { preassign keep } ;
+PROPERTY ATMEL { output_fast on } ;
+PROPERTY ATMEL { dedicated_input on } ;
+PROPERTY ATMEL { foldback_logic on } ;
+PROPERTY ATMEL { cascade_logic on } ;
+
+
+/* *************** INPUT PINS *********************/
+PIN   9 = !C_n                    ; /*                                 */ 
+PIN   1 = _G0                     ; /*                                 */ 
+PIN   4 = _P0                     ; /*                                 */ 
+PIN   3 = _G1                     ; /*                                 */ 
+PIN   2 = _P1                     ; /*                                 */ 
+PIN   7 = _G2                     ; /*                                 */ 
+PIN   8 = _P2                     ; /*                                 */ 
+PIN   5 = _G3                     ; /*                                 */ 
+PIN   6 = _P3                     ; /*                                 */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN  13 = _P                      ; /*                                 */ 
+PIN  12 = _G                      ; /*                                 */ 
+PIN  16 = c_nz                    ; /*                                 */ 
+PIN  15 = c_ny                    ; /*                                 */ 
+PIN  14 = c_nx                    ; /*                                 */ 
+
+/* *************** PIN NODES ***********************/
+
+/* *************** EQUATIONS ***********************/
+_P  = (_P0  # _P1  # _P2  # _P3 );
+_G  = ((_G0  & _G1  & _G2  & _G3 ) # (_P1  & _G3  & _G2  & _G1 ) # (_P2  & _G3  & _G2 ) # (_P3  & _G3 ));
+c_nz  = ! ((_G2  & _G1  & _G0  & C_n) # (_P0  & _G2  & _G1  & _G0 ) # (_P1  & _G2  & _G1 ) # (_P2  & _G2 ));
+c_ny  = ! ((_G1  & _G0  & C_n) # (_P0  & _G1  & _G0 ) # (_P1  & _G1 ));
+c_nx  = ! ((_G0  & C_n) # (_P0  & _G0 ));
